@@ -1,27 +1,42 @@
 
-function handleFunc(evnet){
+function handleFunc(evnet) {
     var alpha = event.alpha;
     var beta = event.beta;
     var gamma = event.gamma;
-    document.body.querySelector('.deviceorientation').innerHTML = JSON.stringify([alpha, beta, gamma])
+    document.body.querySelector('.deviceorientation').innerHTML = JSON.stringify([alpha, beta, gamma]) + `<br />
+    var alpha = ${event.alpha};<br />
+    var beta = ${event.beta};<br />
+    var gamma = ${event.gamma};<br />
+    `
     console.log(event);
 }
 
 window.addEventListener('deviceorientation', handleFunc, false);
 
-function handleMotion(e){
+function handleMotion(e) {
     console.log(e);
-    document.body.querySelector('.devicemotion').innerHTML = JSON.stringify(e)+`
+    document.body.querySelector('.devicemotion').innerHTML = JSON.stringify(e) + `
+    <br />
+    <br />
+    accelerationIncludingGravity <br />
+    x : ${e.accelerationIncludingGravity.x}<br />
+    y : ${e.accelerationIncludingGravity.y}<br />
+    z : ${e.accelerationIncludingGravity.z}<br />
+    <br />
+    acceleration<br />
+    x : ${e.acceleration.x}<br />
+    y : ${e.acceleration.y}<br />
+    z : ${e.acceleration.z}<br />
+    <br />
+    rotationRate<br />
+    alpha : ${e.rotationRate.alpha}<br />
+    beta : ${e.rotationRate.beta}<br />
+    gamma : ${e.rotationRate.gamma}<br />
+    <br />
     
-    ${e.acceleration.x}
-    ${e.acceleration.y}
-    ${e.acceleration.z}
-    ${e.rotationRate.alpha}
-    ${e.rotationRate.beta}
-    ${e.rotationRate.gamma}
     
     
     `;
-    
+
 }
 window.addEventListener("devicemotion", handleMotion)
