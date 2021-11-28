@@ -34,9 +34,24 @@ function handleMotion(e) {
     gamma : ${e.rotationRate.gamma}<br />
     <br />
     
-    
-    
     `;
 
 }
+
 window.addEventListener("devicemotion", handleMotion)
+
+
+
+
+
+
+
+let abs = document.querySelector('.deviceorientationabsolute')
+
+window.addEventListener("deviceorientationabsolute", (e)=>{
+    let compass = e.webkitCompassHeading || Math.abs(e.alpha - 360);
+    abs.style.transform = ` rotate(${-compass}deg)`;
+    abs.innerHTML = 'T-'+compass
+})
+
+
