@@ -151,16 +151,16 @@ class ARButton {
 			element.style.zIndex = '999';
 
 		}
-
-		if ( 'xr' in navigator ) {
+		let xr = getXR('if-needed')
+		
+		if ( 'xr' in navigator || xr) {
 
 			button.id = 'ARButton';
 			button.style.display = 'none';
 
 			stylizeElement( button );
-			let xr = getXR('if-needed')
-			alert('if-needed')
-			navigator.xr.isSessionSupported( 'inline' ).then( function ( supported ) {
+			alert( 'running')
+			xr.isSessionSupported( 'inline' ).then( function ( supported ) {
 
 				supported ? showStartAR() : showARNotSupported();
 
