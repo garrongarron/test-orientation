@@ -159,8 +159,8 @@ class ARButton {
 			button.style.display = 'none';
 
 			stylizeElement( button );
-			alert( 'running')
-			xr.isSessionSupported( 'inline' ).then( function ( supported ) {
+			alert( 'running -showARNotSupported')
+			xr.isSessionSupported( 'immersive-ar' ).then( function ( supported ) {
 
 				supported ? showStartAR() : showARNotSupported();
 
