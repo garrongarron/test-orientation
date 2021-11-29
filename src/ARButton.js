@@ -1,3 +1,5 @@
+import getXR from "./GetXR.js";
+
 class ARButton {
 
 	static createButton( renderer, sessionInit = {} ) {
@@ -156,7 +158,7 @@ class ARButton {
 			button.style.display = 'none';
 
 			stylizeElement( button );
-
+			let xr = getXR('yes')
 			navigator.xr.isSessionSupported( 'inline' ).then( function ( supported ) {
 
 				supported ? showStartAR() : showARNotSupported();
