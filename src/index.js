@@ -56,3 +56,16 @@ window.addEventListener("deviceorientationabsolute", (e)=>{
 })
 
 
+// const viewerPose = xrFrame.getViewerPose(xrReferenceSpace);
+
+// if (viewerPose) {
+//   /* render the pose's views */
+//   console.log(viewerPose);
+// }
+
+
+if ("xr" in window.navigator) {
+    /* WebXR can be used! */
+    console.log(window.navigator);
+  }
+
