@@ -158,7 +158,8 @@ class ARButton {
 			button.style.display = 'none';
 
 			stylizeElement( button );
-			let xr = getXR('yes')
+			let xr = getXR('if-needed')
+			alert('if-needed')
 			navigator.xr.isSessionSupported( 'inline' ).then( function ( supported ) {
 
 				supported ? showStartAR() : showARNotSupported();
