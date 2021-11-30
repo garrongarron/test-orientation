@@ -1,9 +1,7 @@
 const circle = document.querySelector('.circle')
-
 function handleMotion(e) {
     const deg = 80 //(e.accelerationIncludingGravity.y/9.8)*90
-    console.log(circle);
-    circle.style.transform = `translate: transform: rotateY(${deg}deg);`
+    circle.style.transform  = `rotate(${Math.round(deg)}deg)`
     document.body.querySelector('.devicemotion').innerHTML = `
     accelerationIncludingGravity <br />
     x : ${e.accelerationIncludingGravity.x}<br />
@@ -13,4 +11,4 @@ function handleMotion(e) {
     `;
 }
 
-window.addEventListener("devicemotion", handleMotion)
+// window.addEventListener("devicemotion", handleMotion)
