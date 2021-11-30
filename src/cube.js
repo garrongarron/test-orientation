@@ -113,7 +113,7 @@ function handleMotion(e) {
     cameraContainer.rotation.y += 0.001 * deg
     flagGo = false
     cube.material.color.set(0xFFFFFF);
-    if(e.accelerationIncludingGravity.x <4.5 && e.accelerationIncludingGravity.z <4.5) {
+    if(e.accelerationIncludingGravity.x <4.5 && e.accelerationIncludingGravity.z >4.5) {
         cube.material.color.set(0xFF0000);
         flagGo = true
     }
