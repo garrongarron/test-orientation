@@ -104,8 +104,9 @@ let flagGo = false
 function goAhead(){
     var pLocal = new THREE.Vector3( 0, 0, -1 );
     var pWorld = pLocal.applyMatrix4( camera.matrixWorld );
-    pWorld.sub( camera.position ).normalize().negate()//.multiplyScalar(0.1);
+    pWorld.sub( camera.position ).normalize().negate().multiplyScalar(0.01);
     display.innerHTML =` ${pWorld.x}  ${pWorld.y}  ${pWorld.z}`
+    pWorld.y = 0
     cameraContainer.position.add(pWorld)
 }
 
