@@ -92,12 +92,28 @@ camera.lookAt(cube.position)
 // camera.rotation.z = Math.PI / 2
 setInterval(() => {
     // cameraContainer.rotation.y += 0.01
+    if(flagGo) goAhead()
     renderer.render(scene, camera);
 }, 1000 / 60);
+
+
+let flagGo = false
+function goAhead(){
+    var pLocal = new THREE.Vector3( 0, 0, -1 );
+    var pWorld = pLocal.applyMatrix4( camera.matrixWorld );
+    var dir = pWorld.sub( camera.position ).normalize().multiplyScalar(0.01);
+    cameraContainer.position.add(dir)
+}
 
 function handleMotion(e) {
     let deg = -(e.accelerationIncludingGravity.y / 9.8) * 90
     deg = (Math.abs(deg) < 10) ? 0 : deg
     cameraContainer.rotation.y += 0.001 * deg
+    flagGo = false
+    if(e.accelerationIncludingGravity.x <4.5 && e.accelerationIncludingGravity.z <4.5) {
+        flagGo = true
+    }
 }
+
+
 window.addEventListener("devicemotion", handleMotion)
