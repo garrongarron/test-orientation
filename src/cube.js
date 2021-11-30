@@ -61,9 +61,8 @@ scene.add(light)
 scene.add(cube);
 cameraContainer.position.z = 5
 cameraContainer.position.set(0,2,3)
-
 camera.lookAt(cube.position)
-
+camera.rotation.z = Math.PI / 2
 setInterval(() => {
     // cameraContainer.rotation.y += 0.01
     renderer.render(scene, camera);
