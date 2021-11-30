@@ -107,10 +107,11 @@ let flagGo = false
 function goAhead(delta){
     var pLocal = new THREE.Vector3( 0, 0, -1 );
     var pWorld = pLocal.applyMatrix4( camera.matrixWorld );
-    pWorld.sub( camera.position ).normalize().negate().multiplyScalar(delta);
-    display.innerHTML =` ${pWorld.x}  ${pWorld.y}  ${pWorld.z}`
-    pWorld.y = 0
-    cameraContainer.position.add(pWorld)
+    let dir = pWorld.sub( camera.position ).normalize()
+    dir.negate().multiplyScalar(delta);
+    display.innerHTML =` ${dir.x}  ${dir.y}  ${dir.z}`
+    dir.y = 0
+    cameraContainer.position.add(dir)
 }
 
 function handleMotion(e) {
