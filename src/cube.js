@@ -81,6 +81,9 @@ class Resize {
 
 const resize = new Resize()
 
+//clock
+const clock = new THREE.Clock();
+
 
 
 resize.start(renderer)
@@ -94,17 +97,17 @@ camera.lookAt(cube.position)
 // camera.rotation.z = Math.PI / 2
 setInterval(() => {
     // cameraContainer.rotation.y += 0.01
-    if(flagGo) goAhead()
+    if(flagGo) goAhead(clock.getDelta())
     renderer.render(scene, camera);
 }, 1000 / 60);
 
 let display = document.querySelector('.display')
 
 let flagGo = false
-function goAhead(){
+function goAhead(delta){
     var pLocal = new THREE.Vector3( 0, 0, -1 );
     var pWorld = pLocal.applyMatrix4( camera.matrixWorld );
-    pWorld.sub( camera.position ).normalize().negate().multiplyScalar(0.01);
+    pWorld.sub( camera.position ).normalize().negate().multiplyScalar(delta);
     display.innerHTML =` ${pWorld.x}  ${pWorld.y}  ${pWorld.z}`
     pWorld.y = 0
     cameraContainer.position.add(pWorld)
