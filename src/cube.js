@@ -69,8 +69,8 @@ setInterval(() => {
 }, 1000 / 60);
 
 function handleMotion(e) {
-    let deg = (e.accelerationIncludingGravity.y/9.8)*90
-    // deg = -Math.round(-10)
+    let deg = -(e.accelerationIncludingGravity.y/9.8)*90
+    deg = (Math.abs(deg )<10)?0:deg
     cameraContainer.rotation.y += 0.001 * deg
 }
 window.addEventListener("devicemotion", handleMotion)
