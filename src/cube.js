@@ -86,6 +86,8 @@ const resize = new Resize()
 resize.start(renderer)
 scene.add(light)
 scene.add(cube);
+cube.material.color.set(0xFFFFFF);
+
 cameraContainer.position.z = 5
 cameraContainer.position.set(0, 2, 15)
 camera.lookAt(cube.position)
@@ -110,7 +112,9 @@ function handleMotion(e) {
     deg = (Math.abs(deg) < 10) ? 0 : deg
     cameraContainer.rotation.y += 0.001 * deg
     flagGo = false
+    cube.material.color.set(0xFFFFFF);
     if(e.accelerationIncludingGravity.x <4.5 && e.accelerationIncludingGravity.z <4.5) {
+        cube.material.color.set(0xFF0000);
         flagGo = true
     }
 }
