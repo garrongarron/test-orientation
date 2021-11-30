@@ -25,7 +25,7 @@ renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
 //cube
 const geometry = new THREE.BoxGeometry(1, 1, 1);
 // const material = new THREE.MeshBasicMaterial({ color: 0xaa0000 });
-const material = new THREE.MeshLambertMaterial( { color: 0xaa0000 } );
+const material = new THREE.MeshLambertMaterial({ color: 0xaa0000 });
 const cube = new THREE.Mesh(geometry, material);
 
 
@@ -57,10 +57,37 @@ directionalLight.shadow.camera.far = 500; // default
 light.add(directionalLight);
 
 
+
+//resize
+class Resize {
+    constructor() {
+        this.renderer = null
+    }
+    start(renderer) {
+        this.renderer = renderer
+        window.removeEventListener('resize', this.resize)
+        window.addEventListener('resize', this.resize)
+    }
+    stop() {
+        window.removeEventListener('resize', this.resize)
+    }
+    resize = () => {
+        camera.aspect = window.innerWidth / window.innerHeight
+        camera.updateProjectionMatrix()
+        this.renderer.setSize(window.innerWidth, window.innerHeight);
+    }
+}
+
+
+const resize = new Resize()
+
+
+
+resize.start(renderer)
 scene.add(light)
 scene.add(cube);
 cameraContainer.position.z = 5
-cameraContainer.position.set(0,2,15)
+cameraContainer.position.set(0, 2, 15)
 camera.lookAt(cube.position)
 // camera.rotation.z = Math.PI / 2
 setInterval(() => {
@@ -69,8 +96,8 @@ setInterval(() => {
 }, 1000 / 60);
 
 function handleMotion(e) {
-    let deg = -(e.accelerationIncludingGravity.y/9.8)*90
-    deg = (Math.abs(deg )<10)?0:deg
+    let deg = -(e.accelerationIncludingGravity.y / 9.8) * 90
+    deg = (Math.abs(deg) < 10) ? 0 : deg
     cameraContainer.rotation.y += 0.001 * deg
 }
 window.addEventListener("devicemotion", handleMotion)
